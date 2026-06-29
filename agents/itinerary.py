@@ -3,6 +3,10 @@ from langchain_core.messages import (
     SystemMessage
 )
 
+from config.llm import get_llm
+
+
+llm = get_llm()
 
 def itinerary_agent(state):
 
