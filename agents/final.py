@@ -2,30 +2,45 @@ from langchain_core.messages import (
     HumanMessage
 )
 
+from config.llm import (
+    get_llm
+)
+
+from prompts.final_prompt import (
+    create_final_prompt
+)
+
+llm = get_llm()
 
 
 def final_agent(state):
 
+    prompt = (
+        create_final_prompt(
 
-    final_prompt = f"""
-        Generate final travel response.
+            flights=
+            state[
+                "flight_results"
+            ],
 
-        Flights:
-        {state['flight_results']}
+            hotels=
+            state[
+                "hotel_results"
+            ],
 
-        Hotels:
-        {state['hotel_results']}
-
-        Itinerary:
-        {state['itinerary']}
-        """
+            itinerary=
+            state[
+                "itinerary"
+            ]
+        )
+    )
 
     response = llm.invoke(
 
         [
 
             HumanMessage(
-                content=final_prompt
+                content=prompt
             )
 
         ]

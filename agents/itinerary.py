@@ -3,21 +3,34 @@ from langchain_core.messages import (
     SystemMessage
 )
 
+from config.llm import (
+    get_llm
+)
+
+from prompts.itinerary_prompt import (
+    create_itinerary_prompt
+)
+
+llm = get_llm()
+
 
 def itinerary_agent(state):
 
+    prompt = (
+        create_itinerary_prompt(
+            user_query=state[
+                "user_query"
+            ],
 
-    prompt = f"""
-        Create a travel itinerary.
-        User Query:
-        {state['user_query']}
+            flights=state[
+                "flight_results"
+            ],
 
-        Flight Results:
-        {state['flight_results']}
-
-        Hotel Results:
-        {state['hotel_results']}
-        """
+            hotels=state[
+                "hotel_results"
+            ]
+        )
+    )
 
     response = llm.invoke(
 
