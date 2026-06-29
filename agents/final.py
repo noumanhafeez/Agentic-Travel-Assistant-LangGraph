@@ -2,7 +2,10 @@ from langchain_core.messages import (
     HumanMessage
 )
 
+from config.llm import get_llm
 
+
+llm = get_llm()
 
 def final_agent(state):
 

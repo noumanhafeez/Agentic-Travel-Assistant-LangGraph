@@ -3,7 +3,6 @@ import logging
 import psycopg
 
 from dotenv import load_dotenv
-
 from langgraph.checkpoint.postgres import (
     PostgresSaver
 )
@@ -26,18 +25,15 @@ def create_checkpointer():
 
     if not database_url:
 
-        logger.error(
-            "DATABASE_URL not found"
-        )
-
         raise ValueError(
-            "DATABASE_URL is missing in .env"
+            "DATABASE_URL missing"
         )
 
     try:
 
         conn = psycopg.connect(
-            database_url
+            database_url,
+            autocommit=True
         )
 
         logger.info(
@@ -51,7 +47,7 @@ def create_checkpointer():
         saver.setup()
 
         logger.info(
-            "LangGraph checkpoint initialized"
+            "Checkpoint initialized successfully"
         )
 
         return saver
@@ -63,7 +59,7 @@ def create_checkpointer():
         )
 
         raise RuntimeError(
-            f"Unable to connect to PostgreSQL: {e}"
+            f"Unable to connect: {e}"
         )
 
     except Exception as e:
