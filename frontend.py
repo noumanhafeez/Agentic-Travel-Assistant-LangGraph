@@ -355,7 +355,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 # ── Input ─────────────────────────────────────────────────────────────────────
 st.markdown("<div class='input-label'>🗺️ Describe your trip</div>", unsafe_allow_html=True)
 
-QUICK = ["7-day Japan under ₹2L", "Paris trip for 5 days", "Dubai weekend trip", "Bali backpacking 10 days"]
+QUICK = ["7-day Japan under 2 lakh PKR", "Paris trip for 5 days", "Dubai weekend trip", "Bali backpacking 10 days"]
 qcols = st.columns(len(QUICK))
 quick_fill = ""
 for qc, label in zip(qcols, QUICK):
@@ -366,7 +366,7 @@ for qc, label in zip(qcols, QUICK):
 user_query = st.text_area(
     "",
     value=quick_fill,
-    placeholder="e.g. Plan a complete 7-day Japan trip including flights, hotels and sightseeing under ₹2 lakhs",
+    placeholder="e.g. Plan a complete 7-day Japan trip including flights, hotels and sightseeing under 3 lakh PKR",
     height=100,
     label_visibility="collapsed",
 )
